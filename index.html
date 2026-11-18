@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض تفاعلي | أ. إلهام - التربية الخاصة</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-shapes">
+        <span class="shape s1"></span>
+        <span class="shape s2"></span>
+        <span class="shape s3"></span>
+    </div>
+
+    <div class="presentation-card">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <header class="top-bar">
+            <span class="badge">✨ عرض تقديمي تفاعلي</span>
+            <span id="slide-counter">الشريحة 1 من 4</span>
+        </header>
+
+        <main class="slide-box">
+            <!-- الشريحة 1 -->
+            <section class="slide active" data-color="theme-purple">
+                <div class="slide-icon">🌟</div>
+                <h1>استراتيجيات دعم ذوي صعوبات التعلم</h1>
+                <p class="lead">إعداد وتقديم: أ. إلهام — أخصائية التربية الخاصة وصعوبات التعلم</p>
+                <div class="idea-box">
+                    <h3>💡 فكرة الشريحة:</h3>
+                    <p>التعريف بأهمية التدخل التربوي المبكر وبناء بيئة صفية مبهجة تراعي الفروق الفردية وتنمي ثقة الطالب بنفسه.</p>
+                </div>
+            </section>
+
+            <!-- الشريحة 2 -->
+            <section class="slide" data-color="theme-teal">
+                <div class="slide-icon">🔍</div>
+                <h1>التشخيص والتقييم التربوي الشامل</h1>
+                <p class="lead">نقطة الانطلاق الصحيحة لبناء خطة علاجية ناجحة وممتعة</p>
+                <div class="idea-box">
+                    <h3>💡 فكرة الشريحة:</h3>
+                    <p>تحديد نقاط القوة والاحتياج لدى الطالب عبر الاختبارات التشخيصية والملاحظة الصفية لتصميم أهداف دقيقة وقابلة للقياس.</p>
+                </div>
+            </section>
+
+            <!-- الشريحة 3 -->
+            <section class="slide" data-color="theme-pink">
+                <div class="slide-icon">🎨</div>
+                <h1>التعليم متعدد الحواس والوسائل التفاعلية</h1>
+                <p class="lead">توظيف الألوان والبصر والسمع والحركة لتسهيل اكتساب المهارات</p>
+                <div class="idea-box">
+                    <h3>💡 فكرة الشريحة:</h3>
+                    <p>استخدام الألعاب التعليمية والبطاقات الملونة والتقنية الحديثة لتحويل المفاهيم المجردة إلى خبرات ملموسة وممتعة.</p>
+                </div>
+            </section>
+
+            <!-- الشريحة 4 -->
+            <section class="slide" data-color="theme-orange">
+                <div class="slide-icon">🤝</div>
+                <h1>الشراكة الفاعلة مع الأسرة</h1>
+                <p class="lead">تكامل الأدوار بين المدرسة والمنزل لضمان استدامة التقدم</p>
+                <div class="idea-box">
+                    <h3>💡 فكرة الشريحة:</h3>
+                    <p>تزويد أولياء الأمور بإرشادات عملية مبسطة لمتابعة الطالب في المنزل وتعزيز إنجازاته اليومية باستمرار.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="controls">
+            <button id="prev-btn" onclick="changeSlide(-1)" disabled>⬅️ السابق</button>
+            <div class="dots" id="dots-container">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button id="next-btn" onclick="changeSlide(1)">التالي ➡️</button>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const counter = document.getElementById('slide-counter');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressFill = document.getElementById('progress-fill');
+        const card = document.querySelector('.presentation-card');
+
+        function updateUI() {
+            slides.forEach((s, i) => {
+                s.classList.toggle('active', i === currentSlide);
+                dots[i].classList.toggle('active', i === currentSlide);
+            });
+            card.className = 'presentation-card ' + slides[currentSlide].dataset.color;
+            counter.textContent = `الشريحة ${currentSlide + 1} من ${slides.length}`;
+            progressFill.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+        }
+
+        function changeSlide(step) {
+            currentSlide += step;
+            updateUI();
+        }
+        updateUI();
+    </script>
+</body>
+</html>
