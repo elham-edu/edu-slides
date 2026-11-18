@@ -1,0 +1,217 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff758c 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.bg-shapes .shape {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.6;
+    z-index: 0;
+}
+.s1 { width: 300px; height: 300px; background: #ff9a9e; top: -50px; right: -50px; }
+.s2 { width: 350px; height: 350px; background: #4facfe; bottom: -80px; left: -60px; }
+.s3 { width: 250px; height: 250px; background: #f6d365; top: 40%; left: 30%; }
+
+.presentation-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 860px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    --theme-main: #6c5ce7;
+    --theme-grad: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    --theme-light: #f3f0ff;
+}
+
+.presentation-card.theme-teal {
+    --theme-main: #00b894;
+    --theme-grad: linear-gradient(135deg, #00b894, #00cec9);
+    --theme-light: #e6fffb;
+}
+
+.presentation-card.theme-pink {
+    --theme-main: #e84393;
+    --theme-grad: linear-gradient(135deg, #e84393, #fd79a8);
+    --theme-light: #fff0f6;
+}
+
+.presentation-card.theme-orange {
+    --theme-main: #e17055;
+    --theme-grad: linear-gradient(135deg, #e17055, #fab1a0);
+    --theme-light: #fff5f0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #eee;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 25%;
+    background: var(--theme-grad);
+    transition: width 0.4s ease, background 0.4s ease;
+}
+
+.top-bar {
+    background: var(--theme-grad);
+    color: #fff;
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    transition: background 0.4s ease;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+}
+
+.slide-box {
+    padding: 45px 40px;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    animation: popIn 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slide.active {
+    display: block;
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.95) translateY(15px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.slide-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    display: inline-block;
+    background: var(--theme-light);
+    padding: 12px 18px;
+    border-radius: 18px;
+}
+
+.slide h1 {
+    color: var(--theme-main);
+    font-size: 2.1rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    transition: color 0.4s ease;
+}
+
+.slide .lead {
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.idea-box {
+    background: var(--theme-light);
+    border-right: 6px solid var(--theme-main);
+    padding: 22px;
+    border-radius: 14px;
+    transition: all 0.4s ease;
+}
+
+.idea-box h3 {
+    color: var(--theme-main);
+    margin-bottom: 8px;
+    font-size: 1.15rem;
+}
+
+.idea-box p {
+    color: #333;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.controls {
+    background: #fafafa;
+    padding: 20px 30px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    width: 28px;
+    border-radius: 10px;
+    background: var(--theme-main);
+}
+
+button {
+    font-family: 'Cairo', sans-serif;
+    background: var(--theme-grad);
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s, opacity 0.3s;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background: #ccc;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .slide-box { padding: 30px 20px; }
+    .slide h1 { font-size: 1.5rem; }
+    button { padding: 10px 18px; font-size: 0.9rem; }
+}
